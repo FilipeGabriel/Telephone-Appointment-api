@@ -11,20 +11,22 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "tb_user")
+@Table(name = "usuario", schema = "desafio")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
+    @Column(name = "user_id")
     private Long userId;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "user_email", unique = true, nullable = false)
     private String userEmail;
 
-    @Column(nullable = false)
+    @Column(name = "user_password", nullable = false)
     private String userPassword;
 
+    @Column(name = "user_dh_cad")
     private LocalDateTime userDTRegistration;
 
     @OneToMany(mappedBy = "contactUser")

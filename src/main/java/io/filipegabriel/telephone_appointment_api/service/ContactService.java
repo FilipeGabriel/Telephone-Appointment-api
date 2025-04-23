@@ -31,7 +31,7 @@ public class ContactService {
     }
 
     public List<Contact> findAllContacts(Long user_id) {
-        return contactRepository.findAllByUserId(user_id);
+        return contactRepository.findAllByContactUserId(user_id);
     }
 
     //Post
@@ -68,7 +68,7 @@ public class ContactService {
     }
 
     public boolean cellPhoneExists(String cellPhone, Long user_id) {
-        return contactRepository.existsByCellPhoneAndUserId(cellPhone, user_id);
+        return contactRepository.existsByContactCellPhoneAndUserId(cellPhone, user_id);
     }
 
 }
