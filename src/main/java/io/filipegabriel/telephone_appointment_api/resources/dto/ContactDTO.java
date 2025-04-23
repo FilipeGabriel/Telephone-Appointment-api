@@ -1,7 +1,5 @@
 package io.filipegabriel.telephone_appointment_api.resources.dto;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
