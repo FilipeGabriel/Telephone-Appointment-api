@@ -19,18 +19,16 @@ public class Contact {
     @EqualsAndHashCode.Include
     private Long contact_id;
 
-    @Column(nullable = false)
-    @Size(max = 100)
+    @Column(nullable = false, length = 100)
     private String contact_name;
 
-    @Size(max = 255)
+    @Column(length = 255)
     private String contact_email;
 
-    @Column(nullable = false, unique = true)
-    @Size(max = 11)
+    @Column(nullable = false, length = 11)
     private String contact_cellPhone;
 
-    @Size(max = 10)
+    @Column(length = 10)
     private String contact_telephone;
 
     private byte contact_yn_favorite;

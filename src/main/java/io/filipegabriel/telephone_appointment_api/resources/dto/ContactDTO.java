@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ContractDTO {
+public class ContactDTO {
 
     private String contact_name;
 
@@ -20,5 +19,7 @@ public class ContractDTO {
     private byte contact_yn_favorite;
 
     private byte contact_yn_active;
+
+    private Long contact_user_id;
 
 }
