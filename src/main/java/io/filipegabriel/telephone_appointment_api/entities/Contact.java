@@ -17,29 +17,29 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long contact_id;
+    private Long contactId;
 
     @Column(nullable = false, length = 100)
-    private String contact_name;
+    private String contactName;
 
     @Column(length = 255)
-    private String contact_email;
+    private String contactEmail;
 
     @Column(nullable = false, length = 11)
     private String contactCellPhone;
 
     @Column(length = 10)
-    private String contact_telephone;
+    private String contactTelephone;
 
-    private byte contact_yn_favorite;
+    private byte contactYNFavorite;
 
-    private byte contact_yn_active;
+    private byte contactYNActive;
 
-    private LocalDateTime contact_dt_registration;
+    private LocalDateTime contactDTRegistration;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "contact_user_id")
-    private User contact_user;
+    @JoinColumn(name = "contactUserId")
+    private User contactUser;
 
 }

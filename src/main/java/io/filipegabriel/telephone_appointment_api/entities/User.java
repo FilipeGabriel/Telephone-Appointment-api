@@ -17,17 +17,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long user_id;
+    private Long userId;
 
     @Column(unique = true, nullable = false)
-    private String user_email;
+    private String userEmail;
 
     @Column(nullable = false)
-    private String user_password;
+    private String userPassword;
 
-    private LocalDateTime user_dt_registration;
+    private LocalDateTime userDTRegistration;
 
-    @OneToMany(mappedBy = "contact_user")
-    private List<Contact> user_contacts = new ArrayList<>();
+    @OneToMany(mappedBy = "contactUser")
+    private List<Contact> userContacts = new ArrayList<>();
 
 }

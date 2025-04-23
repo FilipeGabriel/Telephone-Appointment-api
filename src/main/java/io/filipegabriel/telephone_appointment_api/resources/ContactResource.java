@@ -37,7 +37,7 @@ public class ContactResource {
     @PostMapping
     public ResponseEntity<Contact> insertContact(@RequestBody ContactDTO contactDTO){
         Contact contact = contactService.insertContact(contactDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(contact.getContact_id()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(contact.getContactId()).toUri();
         return ResponseEntity.created(uri).body(contact);
     }
 

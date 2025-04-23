@@ -8,18 +8,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ContactDTO {
 
-    private String contact_name;
+    private String contactName;
 
-    private String contact_email;
+    private String contactEmail;
 
-    private String contact_cellPhone;
+    private String contactCellPhone;
 
-    private String contact_telephone;
+    private String contactTelephone;
 
-    private byte contact_yn_favorite;
+    private byte contactYNFavorite;
 
-    private byte contact_yn_active;
+    private byte contactYNActive;
 
-    private Long contact_user_id;
+    private Long contactUserId;
 
 }

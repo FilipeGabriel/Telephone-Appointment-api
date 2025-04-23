@@ -25,11 +25,15 @@ public class UserService {
     //Post
 
     public User insertUser(UserDTO userDTO){
+        if (userRepository.existsByUserEmail(userDTO.getUserEmail())) {
+            throw new IllegalArgumentException("Já existe um usuário cadastrado com o e-mail " + userDTO.getUserEmail());
+        }
+
         User user = new User();
 
-        user.setUser_email(userDTO.getUser_email());
-        user.setUser_password(userDTO.getUser_password());
-        user.setUser_dt_registration(LocalDateTime.now());
+        user.setUserEmail(userDTO.getUserEmail());
+        user.setUserPassword(userDTO.getUserPassword());
+        user.setUserDTRegistration(LocalDateTime.now());
 
         userRepository.save(user);
 

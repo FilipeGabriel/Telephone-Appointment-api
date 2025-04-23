@@ -38,28 +38,28 @@ public class ContactService {
 
     public Contact insertContact(ContactDTO contactDTO){
         Contact contact = new Contact();
-        User user = userRepository.findById(contactDTO.getContact_user_id()).orElseThrow(NoSuchElementException::new);
+        User user = userRepository.findById(contactDTO.getContactUserId()).orElseThrow(NoSuchElementException::new);
 
-        if (cellPhoneExists(contactDTO.getContact_cellPhone(), user.getUser_id())) {
-            throw new IllegalArgumentException("O número de celular " + contactDTO.getContact_cellPhone() + " já está cadastrado.");
+        if (cellPhoneExists(contactDTO.getContactCellPhone(), user.getUserId())) {
+            throw new IllegalArgumentException("O número de celular " + contactDTO.getContactCellPhone() + " já está cadastrado.");
         }
 
-        contact.setContact_name(contactDTO.getContact_name());
-        if (StringUtils.hasText(contactDTO.getContact_email())) {
-            contact.setContact_email(contactDTO.getContact_email());
+        contact.setContactName(contactDTO.getContactName());
+        if (StringUtils.hasText(contactDTO.getContactEmail())) {
+            contact.setContactEmail(contactDTO.getContactEmail());
         }
-        contact.setContactCellPhone(contactDTO.getContact_cellPhone());
-        if (StringUtils.hasText(contactDTO.getContact_telephone())) {
-            contact.setContact_telephone(contactDTO.getContact_telephone());
+        contact.setContactCellPhone(contactDTO.getContactCellPhone());
+        if (StringUtils.hasText(contactDTO.getContactTelephone())) {
+            contact.setContactTelephone(contactDTO.getContactTelephone());
         }
-        contact.setContact_yn_favorite(contactDTO.getContact_yn_favorite());
-        contact.setContact_yn_active(contactDTO.getContact_yn_active());
-        contact.setContact_dt_registration(LocalDateTime.now());
-        contact.setContact_user(user);
+        contact.setContactYNFavorite(contactDTO.getContactYNFavorite());
+        contact.setContactYNActive(contactDTO.getContactYNActive());
+        contact.setContactDTRegistration(LocalDateTime.now());
+        contact.setContactUser(user);
 
         contactRepository.save(contact);
 
-        user.getUser_contacts().add(contact);
+        user.getUserContacts().add(contact);
 
         userRepository.save(user);
 
