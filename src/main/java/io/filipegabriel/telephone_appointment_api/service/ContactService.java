@@ -40,15 +40,16 @@ public class ContactService {
         Contact contact = new Contact();
         User user = userRepository.findById(contactDTO.getContactUserId()).orElseThrow(NoSuchElementException::new);
 
-        if (cellPhoneExists(contactDTO.getContactCellPhone(), user.getUserId())) {
-            throw new IllegalArgumentException("O número de celular " + contactDTO.getContactCellPhone() + " já está cadastrado.");
-        }
+
 
         contact.setContactName(contactDTO.getContactName());
         if (StringUtils.hasText(contactDTO.getContactEmail())) {
             contact.setContactEmail(contactDTO.getContactEmail());
         }
         contact.setContactCellPhone(contactDTO.getContactCellPhone());
+        if (cellPhoneExists(contactDTO.getContactCellPhone(), user.getUserId())) {
+            throw new IllegalArgumentException("O número de celular " + contactDTO.getContactCellPhone() + " já está cadastrado.");
+        }
         if (StringUtils.hasText(contactDTO.getContactTelephone())) {
             contact.setContactTelephone(contactDTO.getContactTelephone());
         }
