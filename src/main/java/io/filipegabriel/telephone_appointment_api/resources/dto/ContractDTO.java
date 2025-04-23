@@ -1,0 +1,26 @@
+package io.filipegabriel.telephone_appointment_api.resources.dto;
+
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ContractDTO {
+
+    private String contact_name;
+
+    private String contact_email;
+
+    private String contact_cellPhone;
+
+    private String contact_telephone;
+
+    private byte contact_yn_favorite;
+
+    private byte contact_yn_active;
+
+}
