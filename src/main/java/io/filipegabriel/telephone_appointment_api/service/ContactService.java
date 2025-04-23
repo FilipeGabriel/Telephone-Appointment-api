@@ -40,11 +40,15 @@ public class ContactService {
         Contact contact = new Contact();
         User user = userRepository.findById(contactDTO.getContact_user_id()).orElseThrow(NoSuchElementException::new);
 
+        if (cellPhoneExists(contactDTO.getContact_cellPhone(), user.getUser_id())) {
+            throw new IllegalArgumentException("O número de celular " + contactDTO.getContact_cellPhone() + " já está cadastrado.");
+        }
+
         contact.setContact_name(contactDTO.getContact_name());
         if (StringUtils.hasText(contactDTO.getContact_email())) {
             contact.setContact_email(contactDTO.getContact_email());
         }
-        contact.setContact_cellPhone(contactDTO.getContact_cellPhone());
+        contact.setContactCellPhone(contactDTO.getContact_cellPhone());
         if (StringUtils.hasText(contactDTO.getContact_telephone())) {
             contact.setContact_telephone(contactDTO.getContact_telephone());
         }
@@ -60,6 +64,10 @@ public class ContactService {
         userRepository.save(user);
 
         return contact;
+    }
+
+    public boolean cellPhoneExists(String cellPhone, Long user_id) {
+        return contactRepository.existsByCellPhoneAndUserId(cellPhone, user_id);
     }
 
 }

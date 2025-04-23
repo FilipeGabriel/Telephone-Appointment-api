@@ -26,7 +26,7 @@ public class Contact {
     private String contact_email;
 
     @Column(nullable = false, length = 11)
-    private String contact_cellPhone;
+    private String contactCellPhone;
 
     @Column(length = 10)
     private String contact_telephone;
