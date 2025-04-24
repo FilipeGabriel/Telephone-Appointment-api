@@ -49,4 +49,12 @@ public class ContactResource {
         return ResponseEntity.ok().body(contact);
     }
 
+    //Delete
+
+    @DeleteMapping("/{contactId}")
+    public ResponseEntity<Void> delete(@PathVariable Long contactId){
+        contactService.delete(contactId);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -93,4 +93,10 @@ public class ContactService {
         oldContact.setContactYNActive(newContact.getContactYNActive());
     }
 
+    //Delete
+
+    public void delete(Long id){
+        contactRepository.deleteById(id);
+    }
+
 }

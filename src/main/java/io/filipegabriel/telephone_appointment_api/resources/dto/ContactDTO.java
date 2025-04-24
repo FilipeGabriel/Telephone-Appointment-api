@@ -1,6 +1,5 @@
 package io.filipegabriel.telephone_appointment_api.resources.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
