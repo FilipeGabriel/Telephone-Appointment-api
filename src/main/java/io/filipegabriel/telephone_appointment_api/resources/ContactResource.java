@@ -20,15 +20,15 @@ public class ContactResource {
 
     //Get
 
-    @GetMapping("/{contact_id}")
-    public ResponseEntity<Contact> findContactById(@PathVariable Long contact_id){
-        Contact contact = contactService.findContactById(contact_id);
+    @GetMapping("/{contactId}")
+    public ResponseEntity<Contact> findContactById(@PathVariable Long contactId){
+        Contact contact = contactService.findContactById(contactId);
         return ResponseEntity.ok().body(contact);
     }
 
-    @GetMapping("/find-all/{user_id}")
-    public ResponseEntity<List<Contact>> findAllContacts(@PathVariable Long user_id){
-        List<Contact> user_contacts = contactService.findAllContacts(user_id);
+    @GetMapping("/find-all/{userId}")
+    public ResponseEntity<List<Contact>> findAllContacts(@PathVariable Long userId){
+        List<Contact> user_contacts = contactService.findAllContacts(userId);
         return ResponseEntity.ok().body(user_contacts);
     }
 
@@ -39,6 +39,14 @@ public class ContactResource {
         Contact contact = contactService.insertContact(contactDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(contact.getContactId()).toUri();
         return ResponseEntity.created(uri).body(contact);
+    }
+
+    //Put
+
+    @PutMapping("/{contactId}")
+    public ResponseEntity<Contact> update(@PathVariable Long contactId, @RequestBody ContactDTO newContact){
+        Contact contact = contactService.updateContact(contactId, newContact);
+        return ResponseEntity.ok().body(contact);
     }
 
 }

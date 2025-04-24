@@ -12,4 +12,6 @@ public class UserDTO {
 
     private String userPassword;
 
+    private String userNewPassword;
+
 }

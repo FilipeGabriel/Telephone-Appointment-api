@@ -4,9 +4,11 @@ import io.filipegabriel.telephone_appointment_api.entities.User;
 import io.filipegabriel.telephone_appointment_api.repositories.UserRepository;
 import io.filipegabriel.telephone_appointment_api.resources.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,22 +24,24 @@ public class UserService {
         return user.get();
     }
 
-    //Post
+    //Put
 
-    public User insertUser(UserDTO userDTO){
-        if (userRepository.existsByUserEmail(userDTO.getUserEmail())) {
-            throw new IllegalArgumentException("Já existe um usuário cadastrado com o e-mail " + userDTO.getUserEmail());
+    public User updateUser (Long userId, UserDTO newUser) {
+        User oldUser = userRepository.findById(userId).orElseThrow(NoSuchElementException::new);
+        updateUser(oldUser, newUser);
+
+        userRepository.save(oldUser);
+        return oldUser;
+    }
+
+    public void updateUser(User oldUser, UserDTO newUser){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        if (passwordEncoder.matches(newUser.getUserPassword(), oldUser.getUserPassword())) {
+            oldUser.setUserPassword(passwordEncoder.encode(newUser.getUserNewPassword()));
+        } else {
+            throw new IllegalArgumentException("Senha atual incorreta! Tente novamente.");
         }
-
-        User user = new User();
-
-        user.setUserEmail(userDTO.getUserEmail());
-        user.setUserPassword(userDTO.getUserPassword());
-        user.setUserDTRegistration(LocalDateTime.now());
-
-        userRepository.save(user);
-
-        return user;
     }
 
 }

@@ -19,19 +19,18 @@ public class UserResource {
 
     //Get
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<User> findUserById(@PathVariable Long user_id){
-        User user = userService.findUserById(user_id);
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> findUserById(@PathVariable Long userId){
+        User user = userService.findUserById(userId);
         return ResponseEntity.ok().body(user);
     }
 
-    //Post
+    //Put
 
-    @PostMapping
-    public ResponseEntity<Void> insertUser(@RequestBody UserDTO userDTO){
-        User user = userService.insertUser(userDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/id}").buildAndExpand(user.getUserId()).toUri();
-        return ResponseEntity.created(uri).build();
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> update(@PathVariable Long userId, @RequestBody UserDTO newUser){
+        User user = userService.updateUser(userId, newUser);
+        return ResponseEntity.ok().body(user);
     }
 
 }

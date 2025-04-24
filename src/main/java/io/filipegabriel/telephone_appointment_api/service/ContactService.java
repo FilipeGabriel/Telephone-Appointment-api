@@ -71,4 +71,26 @@ public class ContactService {
         return contactRepository.existsByContactCellPhoneAndUserId(cellPhone, user_id);
     }
 
+    //Put
+
+    public Contact updateContact(Long contactId, ContactDTO newContact){
+        Contact oldContact = contactRepository.findById(contactId).orElseThrow(NoSuchElementException::new);
+        updateContact(oldContact, newContact);
+
+        contactRepository.save(oldContact);
+        return oldContact;
+    }
+
+    public void updateContact(Contact oldContact, ContactDTO newContact){
+        oldContact.setContactName(newContact.getContactName());
+        oldContact.setContactEmail(newContact.getContactEmail());
+        if (cellPhoneExists(newContact.getContactCellPhone(), oldContact.getContactUser().getUserId())) {
+            throw new IllegalArgumentException("O número de celular " + newContact.getContactCellPhone() + " já está cadastrado.");
+        }
+        oldContact.setContactCellPhone(newContact.getContactCellPhone());
+        oldContact.setContactTelephone(newContact.getContactTelephone());
+        oldContact.setContactYNFavorite(newContact.getContactYNFavorite());
+        oldContact.setContactYNActive(newContact.getContactYNActive());
+    }
+
 }
