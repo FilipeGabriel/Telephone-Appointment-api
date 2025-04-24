@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.filipegabriel</groupId>
-	<artifactId>telephone_appointment_api</artifactId>
+	<artifactId>phone_book_api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>telephone_appointment_api</name>
+	<name>phone_book_api</name>
 	<description>Telephone Scheduling System</description>
 	<url/>
 	<licenses>
