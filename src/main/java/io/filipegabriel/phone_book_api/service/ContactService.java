@@ -84,8 +84,10 @@ public class ContactService {
     public void updateContact(Contact oldContact, ContactDTO newContact){
         oldContact.setContactName(newContact.getContactName());
         oldContact.setContactEmail(newContact.getContactEmail());
-        if (cellPhoneExists(newContact.getContactCellPhone(), oldContact.getContactUser().getUserId())) {
-            throw new IllegalArgumentException("O número de celular " + newContact.getContactCellPhone() + " já está cadastrado.");
+        if(!oldContact.getContactCellPhone().equals(newContact.getContactCellPhone())){
+            if (cellPhoneExists(newContact.getContactCellPhone(), oldContact.getContactUser().getUserId())) {
+                throw new IllegalArgumentException("O número de celular " + newContact.getContactCellPhone() + " já está cadastrado.");
+            }
         }
         oldContact.setContactCellPhone(newContact.getContactCellPhone());
         oldContact.setContactTelephone(newContact.getContactTelephone());
