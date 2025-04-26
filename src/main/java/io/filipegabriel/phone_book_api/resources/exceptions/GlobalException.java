@@ -39,11 +39,16 @@ public class GlobalException {
     public ResponseEntity<StandardError> propertyValueException(PropertyValueException e, HttpServletRequest request){
         Instant timestamp = Instant.now();
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
-        String error = "Os seguintes campos são obrigatórios: " + e.getPropertyName();
+        String error = "Os seguintes campos são obrigatórios: " + translateName(e.getPropertyName());
         String message = e.getMessage();
         String path = request.getRequestURI();
         StandardError standardError = new StandardError(timestamp, status.value(), error, message, path);
         return ResponseEntity.status(status).body(standardError);
+    }
+
+    public String translateName(String data){
+        if(data.equals("userEmail")) return "Email";
+        return data;
     }
 
 }

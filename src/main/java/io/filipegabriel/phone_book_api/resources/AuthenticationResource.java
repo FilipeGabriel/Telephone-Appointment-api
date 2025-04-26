@@ -48,7 +48,7 @@ public class AuthenticationResource {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterDTO data){
-        if(this.userRepository.findByUserEmail(data.userEmail()) != null) return ResponseEntity.badRequest().build();
+        if(this.userRepository.existsByUserEmail(data.userEmail())) throw new IllegalArgumentException("E-mail já cadastrado.");
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.userPassword());
         User newUser = new User();
