@@ -33,6 +33,18 @@ A persistência dos dados é realizada em um banco de dados **Postgres**.
 - **Autorização**: [OAuth](https://oauth.net/2/) - Para garantir autorização robusta e segura.
 - **Banco de Dados**: [Postgres](https://www.postgresql.org/) - Sistema de gerenciamento de banco de dados relacional.
 
+## Testes Unitários
+
+A aplicação também conta com uma camada de testes automatizados utilizando **JUnit 5** e **Mockito**.  
+Os testes são focados nas operações de persistência de dados.
+
+### Frameworks de Teste Utilizados:
+- [JUnit 5](https://junit.org/junit5/) - Plataforma para escrita e execução dos testes unitários.
+- [Mockito](https://site.mockito.org/) - Framework para criação de objetos simulados (mocks) e verificação de comportamentos.
+
+### Cobertura de Testes:
+- **Controladores**: Testes dos endpoints REST utilizando o `MockMvc`.
+
 ## Fluxo de Trabalho (Backend)
 
 1. **Login**: Usuário insere credenciais e, após autenticação bem-sucedida, um **token JWT** é gerado para gerenciar a sessão.
